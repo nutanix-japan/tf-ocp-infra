@@ -18,9 +18,7 @@ variable "user" {
   type      = string
   sensitive = true
 }
-variable "vm_name" {
-  type = string
-}
+
 variable "vm_domain" {
   type = string
 }
@@ -35,9 +33,6 @@ variable "vm_worker_prefix" {
 variable "vm_master_prefix" { 
 }
 
-variable "vm_bootstrap_prefix" {
-  
-}
 
 variable "vm_master_count" {  
 }
@@ -45,9 +40,6 @@ variable "vm_master_count" {
 variable "vm_worker_count" {
 }
 
-variable "vm_bootstrap_count" {
-
-}
 
 variable "image_uri" {
   type = string
