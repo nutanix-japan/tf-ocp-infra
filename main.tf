@@ -45,7 +45,7 @@ provider "nutanix" {
 #     subnet_uuid = data.nutanix_subnet.subnet.id
 #   }
 # }
- 
+
 ## Creating MASTER VMs here
 resource "nutanix_virtual_machine" "rhocs-master" {
   count                = var.vm_master_count
@@ -53,7 +53,7 @@ resource "nutanix_virtual_machine" "rhocs-master" {
   cluster_uuid         = data.nutanix_cluster.cluster.id
   num_vcpus_per_socket = "1"
   num_sockets          = "4"
-  memory_size_mib      = 16*1024
+  memory_size_mib      = 16 * 1024
 
   disk_list {
     device_properties {
@@ -70,16 +70,16 @@ resource "nutanix_virtual_machine" "rhocs-master" {
     }
   }
 
-disk_list {
-  disk_size_bytes = 120 * 1024 * 1024 * 1024
-  device_properties {
-    device_type = "DISK"
-    disk_address = {
-      "adapter_type" = "SCSI"
-      "device_index" = "1"
+  disk_list {
+    disk_size_bytes = 100 * 1024 * 1024 * 1024
+    device_properties {
+      device_type = "DISK"
+      disk_address = {
+        "adapter_type" = "SCSI"
+        "device_index" = "1"
+      }
     }
   }
-}
 
   nic_list {
     subnet_uuid = data.nutanix_subnet.subnet.id
@@ -92,8 +92,8 @@ resource "nutanix_virtual_machine" "rhocs-worker" {
   name                 = "${var.vm_worker_prefix}-${count.index + 1}"
   cluster_uuid         = data.nutanix_cluster.cluster.id
   num_vcpus_per_socket = "1"
-  num_sockets          = "4"
-  memory_size_mib      = 12*1024   
+  num_sockets          = "8"
+  memory_size_mib      = 12 * 1024
 
   disk_list {
     device_properties {
@@ -110,16 +110,16 @@ resource "nutanix_virtual_machine" "rhocs-worker" {
     }
   }
 
-disk_list {
-  disk_size_bytes = 120 * 1024 * 1024 * 1024
-  device_properties {
-    device_type = "DISK"
-    disk_address = {
-      "adapter_type" = "SCSI"
-      "device_index" = "1"
+  disk_list {
+    disk_size_bytes = 100 * 1024 * 1024 * 1024
+    device_properties {
+      device_type = "DISK"
+      disk_address = {
+        "adapter_type" = "SCSI"
+        "device_index" = "1"
+      }
     }
   }
-}
 
   nic_list {
     subnet_uuid = data.nutanix_subnet.subnet.id
